@@ -157,10 +157,10 @@ function displayCharacters(characters) {
 
     // Create column for image
     const imgCol = document.createElement("div");
-    imgCol.className = "col-md-4";
+    imgCol.className = "col-md-4 ";
     const characterImage = document.createElement("img");
     characterImage.src = character.img;
-    characterImage.className = "img-fluid rounded-start";
+    characterImage.className = "img-fluid rounded-start border border-warning rounded border-5";
     imgCol.appendChild(characterImage);
     // Create column for card body
     const bodyCol = document.createElement("div");
@@ -169,7 +169,7 @@ function displayCharacters(characters) {
     const cardBody = document.createElement("div");
     cardBody.className = "card-body";
 
-    const characterTitle = document.createElement("h2");
+    const characterTitle = document.createElement("h6");
     characterTitle.textContent = character.title;
     characterTitle.className = "card-title";
 
@@ -183,7 +183,7 @@ function displayCharacters(characters) {
 
     const characterCategory = document.createElement("p");
     characterCategory.textContent = "#" + character.category;
-    characterCategory.className = "card-text text-muted";
+    characterCategory.className = "card-text text-muted p-3 mb-2 bg-warning text-dark";
 
     // Append elements to card body:
     cardBody.append(
