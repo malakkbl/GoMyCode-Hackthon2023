@@ -112,3 +112,55 @@ const Personas = [
         Another easy one! This one of the Mortal Kombat game characters is just the robotic cop best known from fun 80s films.`,
       },
   ];
+
+window.onload = function() {
+  // Create an array for my categories , with "all" at the beginning :
+  const categories = ["all", ...new Set(Personas.map(item => item.category))];
+  // Select the container for the buttons
+  const buttonContainer = document.querySelector('.button-container');
+  // Select the container for the character cards
+  const charactersContainer = document.getElementById('characters-container');
+  // Iterate over each category
+  categories.forEach(category => {
+      // Create a new button element
+      const button = document.createElement('button');
+      button.className = 'btn';
+      button.textContent = category;
+      buttonContainer.appendChild(button);
+      button.addEventListener('click', function() {
+          charactersContainer.innerHTML = "";          // Clear the characters container
+          // If the category is 'all', display all characters, otherwise filter characters based on category
+          let charactersToDisplay = category === "all" ? Personas : Personas.filter(item => item.category === category);
+          displayCharacters(charactersToDisplay);
+      });
+  });
+
+  displayCharacters(Personas);// Initially, display all characters
+};
+
+  
+function displayCharacters(characters) {
+    const charactersContainer = document.getElementById('characters-container');
+    characters.forEach(character => {
+        const characterCard = document.createElement('div');
+        characterCard.className = 'character-card';
+
+        const characterTitle = document.createElement('h2');
+        characterTitle.textContent = character.title;
+
+        const characterImage = document.createElement('img');
+        characterImage.src = character.img;
+
+        const characterCategory = document.createElement('p');
+        characterCategory.textContent = "Category: " + character.category;
+
+        const characterAttaque = document.createElement('p');
+        characterAttaque.textContent = "Attaque: " + character.attaque;
+
+        const characterDescription = document.createElement('p');
+        characterDescription.textContent = character.desc;
+
+        characterCard.append(characterTitle, characterImage, characterCategory, characterAttaque, characterDescription);
+        charactersContainer.appendChild(characterCard);
+    });
+}
